@@ -6,6 +6,17 @@ const searchWeather = () =>{
     .then(res => res.json())
     .then(data => displayTemparature(data))
 }
+const setInnerText = (id,text) =>{
+    document.getElementById(id).innerText = text;
+}
+
 const displayTemparature = temparature =>{
-    console.log(temparature)
+    console.log(temparature.weather[0].icon);
+    setInnerText('city', temparature.name);
+    setInnerText('temperature', temparature.main.temp);
+    setInnerText('condition', temparature.weather[0].main);
+    // set weather icon
+    const url = ` http://openweathermap.org/img/wn/${temparature.weather[0].icon}@2x.png ` 
+    const imgIcon = document.getElementById('weather-icon');
+    imgIcon.setAttribute('src',url)
 }
